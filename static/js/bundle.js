@@ -33963,13 +33963,13 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _HelloPage = _interopRequireDefault(require("./components/Hellopage/HelloPage.jsx"));
+var _HelloPage = require("./components/Hellopage/HelloPage.jsx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var root = document.getElementById('root');
 
-_reactDom["default"].render( /*#__PURE__*/_react["default"].createElement(_HelloPage["default"], null), root);
+_reactDom["default"].render( /*#__PURE__*/_react["default"].createElement(_HelloPage.HelloPage, null), root);
 
 },{"./components/Hellopage/HelloPage.jsx":13,"react":7,"react-dom":4}],13:[function(require,module,exports){
 "use strict";
@@ -33986,7 +33986,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var HelloPage = function HelloPage() {
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "hello-container"
-  }, "Hello World!!", /*#__PURE__*/_react["default"].createElement("br", null), "This content is from HomePage!!!");
+  }, "Hello Ivan!!", /*#__PURE__*/_react["default"].createElement("br", null), "We made it");
 };
 
 exports.HelloPage = HelloPage;

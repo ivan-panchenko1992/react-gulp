@@ -25,6 +25,10 @@
     "browserify": "^17.0.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
+    "gulp-live-server": "0.0.31",
+    "gulp-sass": "^5.1.0",
+    "gulp-url-loader": "^0.2.1",
+    "sass": "^1.53.0",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
