@@ -6,21 +6,27 @@ const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const concat = require('gulp-concat');
 const gls = require('gulp-live-server');
-// import dartSass from 'sass';
-// import gulpSass from 'gulp-sass';
-// const sass = gulpSass(dartSass);
-const { urlLoader } = require('gulp-url-loader')
+const sass = require('gulp-sass')(require('sass'));
 
 var paths = {
   main_js : [ 'src/app.jsx' ],
   css : [ 'src/components/**/*.*css' ],
   js : [ 'src/**/*.js*' ],
-  images: [ 'images/**/*.*']
 };
-gulp.task('images', () => gulp
-  .src(paths.images)
-  .pipe(urlLoader())
-  .pipe(gulp.dest('static/images/')))
+gulp.task('images', function() {
+  gulp.src([`${paths.images}.{gif,jpg,png,svg}`])
+      .pipe(gulp.dest('static/'));
+});
+gulp.task('sass', function () {
+  return gulp.src(paths.css)
+    .pipe(sass())
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest('static/css/'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(`${paths.images}.{gif,jpg,png,svg}`, ['build-images-dev']);
+});
 
 gulp.task('js', function() {
   return browserify(paths.main_js)
@@ -51,11 +57,11 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('dev', gulp.series('css', 'js', 'images' , function () {
+gulp.task('dev', gulp.series('sass', 'js' , function () {
 
-  gulp.watch(paths.css, gulp.series('css' ));
+  gulp.watch(paths.css, gulp.series('sass' ));
   gulp.watch(paths.js, gulp.series('js'));
-  gulp.watch(path.images, gulp.series('images'))
+  // gulp.watch(path.images, gulp.series('images'))
   // Start server.
   const server = gls.static('static', 8888);
   server.start();
