@@ -33986,7 +33986,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var HelloPage = function HelloPage() {
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "hello-container"
-  }, "Hello Ivan!!", /*#__PURE__*/_react["default"].createElement("br", null), "We made it");
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    style: {
+      width: 300,
+      height: 150
+    },
+    src: "helloWorld.jpg"
+  }), "Hello Ivan!!", /*#__PURE__*/_react["default"].createElement("br", null), "We made it");
 };
 
 exports.HelloPage = HelloPage;

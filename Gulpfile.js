@@ -12,10 +12,11 @@ var paths = {
   main_js : [ 'src/app.jsx' ],
   css : [ 'src/components/**/*.*css' ],
   js : [ 'src/**/*.js*' ],
+  images: ['src/components/**/*.+(png|jpg|gif|ico|svg|webp)']
 };
 gulp.task('images', function() {
-  gulp.src([`${paths.images}.{gif,jpg,png,svg}`])
-      .pipe(gulp.dest('static/'));
+  return gulp.src(paths.images)
+    .pipe(gulp.dest('static/images'));
 });
 gulp.task('sass', function () {
   return gulp.src(paths.css)
@@ -25,7 +26,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(`${paths.images}.{gif,jpg,png,svg}`, ['build-images-dev']);
+  gulp.watch(`${paths.images}`, ['build-images-dev']);
 });
 
 gulp.task('js', function() {
@@ -57,11 +58,11 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('dev', gulp.series('sass', 'js' , function () {
+gulp.task('dev', gulp.series('sass', 'js', 'images' , function () {
 
   gulp.watch(paths.css, gulp.series('sass' ));
   gulp.watch(paths.js, gulp.series('js'));
-  // gulp.watch(path.images, gulp.series('images'))
+  gulp.watch(paths.images, gulp.series('images'))
   // Start server.
   const server = gls.static('static', 8888);
   server.start();
